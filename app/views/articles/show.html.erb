@@ -1,0 +1,28 @@
+
+<h1> <%= @article.title %> </h1>
+<p> <%= @article.body %> </p>
+
+<ul>
+<li> <%= link_to "Edit Article", edit_article_path(@article) %> </li>
+<li> <%= link_to "Delete Article", article_path(@article), method: :delete, data: {notice: "Are you sure?"} %></li>
+<ul>
+
+<h2> Add a comment </h2>
+
+<%= form_with model: [@article, @article.comments.build] do | f | %> 
+
+<p>
+    <%= f.label :commenter %>
+    <%= f.text_field :commenter %>
+</p>
+
+<p>
+<%= f.label :body %>
+<%= f.text_area :body %>
+</p>
+
+<p>
+<%= f.submit %>
+</p>
+
+<%end%>
