@@ -1,4 +1,4 @@
-
+<% if logged_in? %>
 <h1> <%= @article.title %> </h1>
 <p> <%= @article.body %> </p>
 
@@ -7,22 +7,11 @@
 <li> <%= link_to "Delete Article", article_path(@article), method: :delete, data: {notice: "Are you sure?"} %></li>
 <ul>
 
+
+<h3>Comments</h3>
+<%=  render @article.comments %>
+
+
 <h2> Add a comment </h2>
-
-<%= form_with model: [@article, @article.comments.build] do | f | %> 
-
-<p>
-    <%= f.label :commenter %>
-    <%= f.text_field :commenter %>
-</p>
-
-<p>
-<%= f.label :body %>
-<%= f.text_area :body %>
-</p>
-
-<p>
-<%= f.submit %>
-</p>
-
-<%end%>
+<%= render 'comments/form' %>
+<% end %>
